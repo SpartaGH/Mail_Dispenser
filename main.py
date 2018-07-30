@@ -32,17 +32,21 @@ def main():
         #boucle sur chaque ligne -> 1 mail
         n=1
         for line in f:
-            
-            msg = ("msg test n°"+str(n)).encode()
-            client = str(line)  #controle avec des regex si chaque ligne est bien un mail valide
-            regexMail = '^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$'
-            if re.match(regexMail,client):
-                server.sendmail(email, client, msg)
-                print("Email n°"+str(n)+" envoyé à "+str(client)+", msg : "+(msg).decode())
-                n=n+1
+            if n==nbmail+1:
+                break
             else:
-                print("Mail illisible : "+str(client))
+                msg = ("msg test n°"+str(n)).encode()
+                client = str(line)  #controle avec des regex si chaque ligne est bien un mail valide
+                regexMail = '^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$'
+                if re.match(regexMail,client):
+                    server.sendmail(email, client, msg)
+                    print("Email n°"+str(n)+" envoyé à "+str(client)+", msg : "+(msg).decode())
+                    n=n+1
+                else:
+                    print("Mail illisible : "+str(client))
 
+        
+        print(str(nbmail)+" email(s) ont/a été envoyé.")
         #Quit
         server.quit()
 
