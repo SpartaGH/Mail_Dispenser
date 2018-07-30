@@ -35,11 +35,11 @@ def main():
 		for line in f:
 			 
 			msg = "msg test n°"n
-			client = str(line)	#faut controler avec des regex si chaque ligne est bien un mail valide
+			client = str(line)	#controle avec des regex si chaque ligne est bien un mail valide
         regexMail = "^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$"
 			if re.match(regexMail,client):
-            server.sendmail("sp email", client, msg)	#c'est quoi sp email ? Stephane Plaze
-            print("Email n°"n" envoyé à "client)
+            server.sendmail("sp email", client, msg)
+            print("Email n°"n" envoyé à "client", msg : "msg)
             n++
         else:
             print("Mail illisible : "client)
