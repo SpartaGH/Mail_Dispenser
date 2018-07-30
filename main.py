@@ -36,7 +36,8 @@ def main():
 			 
 			msg = "msg test n°"n
 			client = str(line)	#faut controler avec des regex si chaque ligne est bien un mail valide
-			if re.match(client):
+        regexMail = "^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$"
+			if re.match(regexMail,client):
             server.sendmail("sp email", client, msg)	#c'est quoi sp email ?
             print("Email n°"n" envoyé à "client)
             n++
