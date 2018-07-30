@@ -1,4 +1,4 @@
-import smtplib
+import smtplib as sl
 import re
 
 def verifnomb():
@@ -20,27 +20,28 @@ def main():
         #Login
         print("test1")
         #☻ça bug au niveau de la connexion
-        server = smtplib.SMTP('smtp-gmail.com', 465)    #je connais pas cette fonction, je vais te faire confiance
+        server = sl.SMTP('smtp.gmail.com', 587)    #je connais pas cette fonction, je vais te faire confiance
+        #server.set_debuglevel(1)
         server.starttls()
+        #print('q')
         email = 'louisph54300@gmail.com'
-        mdp = 'v#OKIF9QuxSpYM5Z'
+        mdp = 'root2540'
         server.login(email, mdp)
-        print(server.noop()) #Retourne code connexion (refusé/accépté)
-        print("test2")
+        #print("test2")
 
         #boucle sur chaque ligne -> 1 mail
         n=1
         for line in f:
             
-            msg = "msg test n°"+n
+            msg = ("msg test n°"+str(n)).encode()
             client = str(line)  #controle avec des regex si chaque ligne est bien un mail valide
-            regexMail = "^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$"
+            regexMail = '^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$'
             if re.match(regexMail,client):
-                server.sendmail("sp email", client, msg)
-                print("Email n°"+n+" envoyé à "+client+", msg : "+msg)
+                server.sendmail(email, client, msg)
+                print("Email n°"+str(n)+" envoyé à "+str(client)+", msg : "+(msg).decode())
                 n=n+1
             else:
-                print("Mail illisible : "+client)
+                print("Mail illisible : "+str(client))
 
         #Quit
         server.quit()
