@@ -13,8 +13,8 @@ def verifnomb():
 
 def main():
 
-	fichier = input("Nom fichier ?")
-	#fichier = 'liste.txt'
+	#fichier = input("Nom fichier ?")
+	fichier = 'liste.txt'
 
 	#choisir le nb de mail à envoyé
 	for(nbmail=null; type(nbmail) != int; nbmail=verifnomb())
