@@ -1,4 +1,5 @@
 import smtplib
+import re
 
 def verifnomb():
 	quant = input("Nombre de mails à envoyer ?")
@@ -35,10 +36,12 @@ def main():
 			 
 			msg = "msg test n°"n
 			client = str(line)	#faut controler avec des regex si chaque ligne est bien un mail valide
-			server.sendmail("sp email", client, msg)	#c'est quoi sp email ?
-				
-			print("Email n°"n" envoyé.")
-			n++
+			if re.match(client):
+            server.sendmail("sp email", client, msg)	#c'est quoi sp email ?
+            print("Email n°"n" envoyé à "client)
+            n++
+        else:
+            print("Mail illisible : "client)
 
 		#Quit
 		server.quit()
