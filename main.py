@@ -5,17 +5,29 @@ def verifnomb():
     quant = input("Nombre de mails à envoyer ?")
     return int(quant)
 
-def main():
-
-    #fichier = input("Nom fichier ?")
-    fichier = 'liste.txt'
-
+#TODO à tester
+def triMail(File fb, File fe, File fa):
+    temp = ''
+    #on verifie pour chaque adresse du fichier brut si elle n'est pas dans le fichier envoyé
+    with open(fb , 'r'):
+        with open(fe, 'r'):
+            for line in fb :
+                if not re.match(line,fe):
+                    #Si ce n'est pas le cas, on ajoute cette adresse a un string temp
+                    temp = temp + line
+    with open(fa , 'w'):
+        #on copie le temp dans fa
+        #TODO
+            
+#TODO a retester            
+def envoieMail(File file):
+    
     #choisir le nb de mail à envoyé
     nbmail=verifnomb()
     while type(nbmail) != int:
         nbmail=verifnomb()
 
-    with open(fichier, 'r') as f:
+    with open(file, 'r') as f:
         
         #Login
         print("test1")
@@ -50,4 +62,17 @@ def main():
         #Quit
         server.quit()
 
+def main():
+    
+    #On s'occupe de trié les adresses
+    fileMailBrut = 'liste.txt'
+    fileMailEnvoye = 'mailEnvoye.txt'
+    fileMailAEnvoye = 'mailAEnvoye.txt
+    
+    triMail(fileMailBrut,fileMailEnvoye,fileMailAEnvoye)
+    
+    #Puis ensuite on envoie les mails contenue dans la liste des mails à envoyé
+    envoieMail(fileMailAEnvoye)
+    
+    
 main()
