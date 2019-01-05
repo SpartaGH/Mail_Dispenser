@@ -6,7 +6,7 @@ def verifnomb():
     return int(quant)
 
 #TODO à tester
-def triMail(File fb, File fe, File fa):
+def triMail(fb, fe, fa):
     temp = ''
     #on verifie pour chaque adresse du fichier brut si elle n'est pas dans le fichier envoyé
     with open(fb , 'r'):
@@ -16,11 +16,12 @@ def triMail(File fb, File fe, File fa):
                     #Si ce n'est pas le cas, on ajoute cette adresse a un string temp
                     temp = temp + line
     with open(fa , 'w'):
+        print(temp)
         #on copie le temp dans fa
         #TODO
             
 #TODO a retester            
-def envoieMail(File file):
+def envoieMail(file):
     
     #choisir le nb de mail à envoyé
     nbmail=verifnomb()
@@ -67,7 +68,7 @@ def main():
     #On s'occupe de trié les adresses
     fileMailBrut = 'liste.txt'
     fileMailEnvoye = 'mailEnvoye.txt'
-    fileMailAEnvoye = 'mailAEnvoye.txt
+    fileMailAEnvoye = 'mailAEnvoye.txt'
     
     triMail(fileMailBrut,fileMailEnvoye,fileMailAEnvoye)
     
